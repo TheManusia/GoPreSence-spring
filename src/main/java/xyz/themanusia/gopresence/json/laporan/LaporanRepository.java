@@ -1,4 +1,4 @@
-package xyz.themanusia.gopresence.laporan;
+package xyz.themanusia.gopresence.json.laporan;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,4 +1,4 @@
-package xyz.themanusia.gopresence.viewstudent;
+package xyz.themanusia.gopresence.json.viewstudent;
 
 import lombok.*;
 

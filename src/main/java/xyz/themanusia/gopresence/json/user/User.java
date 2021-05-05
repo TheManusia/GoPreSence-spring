@@ -1,4 +1,4 @@
-package xyz.themanusia.gopresence.user;
+package xyz.themanusia.gopresence.json.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

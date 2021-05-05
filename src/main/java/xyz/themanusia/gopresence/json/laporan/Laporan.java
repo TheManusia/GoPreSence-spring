@@ -1,11 +1,11 @@
-package xyz.themanusia.gopresence.laporan;
+package xyz.themanusia.gopresence.json.laporan;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import xyz.themanusia.gopresence.user.User;
+import xyz.themanusia.gopresence.json.user.User;
 
 import javax.persistence.*;
 import java.util.Date;

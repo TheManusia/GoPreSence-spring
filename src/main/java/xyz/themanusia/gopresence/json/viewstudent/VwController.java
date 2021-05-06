@@ -23,11 +23,13 @@ public class VwController {
 
     @GetMapping
     public @ResponseBody
-    Response getView(@RequestParam(name = "id", required = false) String username) {
+    Response getView(@RequestParam(name = "username", required = false) String username) {
         if (username != null) {
             VwStudent vwStudent = vwStudentRepository.getViewStudentById(username);
             if (vwStudent == null)
                 return new Response(Response.NOT_FOUND, "User not found", null);
+            if (vwStudent.getGambar() != null)
+                vwStudent.setGambar("static/img/" + vwStudent.getGambar() + "");
             return new Response(Response.OK, "Showing data", vwStudent);
         }
         List<VwStudent> s = new ArrayList<>(vwStudentRepository.getViewStudent());
@@ -35,7 +37,11 @@ public class VwController {
         if (s.isEmpty())
             return new Response(Response.OK, "Data is Empty", null);
 
-        s.forEach(vwStudent -> vwStudent.setGambar("img/" + vwStudent.getGambar() + ".png"));
+        s.forEach(vwStudent -> {
+            if (vwStudent.getGambar() != null)
+                vwStudent.setGambar("static/img/" + vwStudent.getGambar() + "");
+        });
+
         return new Response(Response.OK, "Showing data", s);
     }
 }

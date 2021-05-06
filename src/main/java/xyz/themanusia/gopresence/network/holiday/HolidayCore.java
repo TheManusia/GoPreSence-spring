@@ -1,7 +1,5 @@
 package xyz.themanusia.gopresence.network.holiday;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Response;

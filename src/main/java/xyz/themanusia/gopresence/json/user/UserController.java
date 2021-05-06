@@ -1,8 +1,6 @@
 package xyz.themanusia.gopresence.json.user;
 
 import lombok.SneakyThrows;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -24,7 +22,7 @@ import java.util.Random;
 public class UserController {
     private final UserRepository userRepository;
 
-    @Value(value = "${image.path:src/main/resources/static/img}")
+    @Value(value = "${image.path:src/main/upload/static/img}")
     private String imagePath;
 
     @Autowired
@@ -51,16 +49,16 @@ public class UserController {
                   @RequestParam(name = "gambar", required = false) String gambar) {
         if (userRepository.existsByUsernameAndPassword(username, Tools.stringToMd5(password))) {
             User u = userRepository.getUserByUsername(username);
-            if (name != null)
+            if (name != null && !name.isEmpty())
                 u.setName(name);
-            if (newPass != null)
+            if (newPass != null && !newPass.isEmpty())
                 u.setPassword(Tools.stringToMd5(newPass));
-            if (gambar != null)
+            if (gambar != null && !gambar.isEmpty())
                 u.setPicture(saveFile(gambar, username));
             userRepository.save(u);
             return new Response(Response.OK, "Successfully edit", userRepository.getUserByUsername(username));
         }
-        return new Response();
+        return new Response(Response.BAD_REQUEST, "Wrong Username Or Password", null);
     }
 
     @SneakyThrows

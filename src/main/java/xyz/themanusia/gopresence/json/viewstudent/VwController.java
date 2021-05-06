@@ -15,6 +15,7 @@ import java.util.List;
 @Controller
 public class VwController {
     private final VwStudentRepository vwStudentRepository;
+    private final static String IMG_PATH = "upload/static/img/";
 
     @Autowired
     public VwController(VwStudentRepository vwStudentRepository) {
@@ -29,7 +30,7 @@ public class VwController {
             if (vwStudent == null)
                 return new Response(Response.NOT_FOUND, "User not found", null);
             if (vwStudent.getGambar() != null)
-                vwStudent.setGambar("static/img/" + vwStudent.getGambar() + "");
+                vwStudent.setGambar(IMG_PATH + vwStudent.getGambar());
             return new Response(Response.OK, "Showing data", vwStudent);
         }
         List<VwStudent> s = new ArrayList<>(vwStudentRepository.getViewStudent());
@@ -39,7 +40,7 @@ public class VwController {
 
         s.forEach(vwStudent -> {
             if (vwStudent.getGambar() != null)
-                vwStudent.setGambar("static/img/" + vwStudent.getGambar() + "");
+                vwStudent.setGambar(IMG_PATH + vwStudent.getGambar());
         });
 
         return new Response(Response.OK, "Showing data", s);
